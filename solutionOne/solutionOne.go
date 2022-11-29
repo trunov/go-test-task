@@ -4,12 +4,12 @@ import (
 	"sort"
 )
 
-func calculateSum(array []int) int {
-	result := 0
-	for _, v := range array {
-		result += v
+func sumArr(arr []int) int {
+	res := 0
+	for _, v := range arr {
+		res += v
 	}
-	return result
+	return res
 }
 
 func Solution(S string, C []int) int {
@@ -28,11 +28,12 @@ func Solution(S string, C []int) int {
 			v, ok := m[s]
 			if ok {
 				m[s] = append(v, C[i])
-				sort.Ints(m[s])
 				break
 			}
 
 			m[s] = []int{C[i]}
+			// redundant
+			break
 		}
 
 		if i != 0 && i < len(S)-1 {
@@ -40,7 +41,6 @@ func Solution(S string, C []int) int {
 				v, ok := m[s]
 				if ok {
 					m[s] = append(v, C[i])
-					sort.Ints(m[s])
 					continue
 				}
 
@@ -50,10 +50,9 @@ func Solution(S string, C []int) int {
 
 	}
 
-	for _, v := range m {
-		if len(v) > 1 {
-			sum += calculateSum(v[:len(v)-1])
-		}
+	for k, v := range m {
+		sort.Ints(m[k])
+		sum += sumArr(v[:len(v)-1])
 	}
 
 	return sum
