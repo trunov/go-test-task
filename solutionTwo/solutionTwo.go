@@ -32,9 +32,7 @@ func Solution(A []int) int {
 			}
 
 			result[i] = append(result[i], n)
-
 		}
-
 	}
 
 	for j := 0; j < len(maxNum); j++ {

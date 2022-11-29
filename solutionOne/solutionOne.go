@@ -32,8 +32,6 @@ func Solution(S string, C []int) int {
 			}
 
 			m[s] = []int{C[i]}
-			// redundant
-			break
 		}
 
 		if i != 0 && i < len(S)-1 {
